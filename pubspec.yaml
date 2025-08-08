@@ -1,7 +1,7 @@
 name: flutter_alipay_plugin
 description: "A Flutter plugin for Alipay payment integration."
 version: 0.0.1
-homepage: https://github.com/your-username/flutter_alipay_plugin
+homepage: https://github.com/Plaud-AI/flutter_alipay_plugin
 
 # The following section contains information used when publishing your package.
 # https://dart.dev/tools/pub/pubspec#publish_to
@@ -9,9 +9,9 @@ homepage: https://github.com/your-username/flutter_alipay_plugin
 # publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 # License
-repository: https://github.com/your-username/flutter_alipay_plugin
-issue_tracker: https://github.com/your-username/flutter_alipay_plugin/issues
-documentation: https://github.com/your-username/flutter_alipay_plugin#readme
+repository: https://github.com/Plaud-AI/flutter_alipay_plugin
+issue_tracker: https://github.com/Plaud-AI/flutter_alipay_plugin/issues
+documentation: https://github.com/Plaud-AI/flutter_alipay_plugin#readme
 
 # Topics help users discover your package
 # Add up to 5 topics describing your package
@@ -30,7 +30,7 @@ topics:
 
 # Funding links to show on the pub.dev page
 funding:
-  - https://github.com/sponsors/your-username
+  - https://github.com/sponsors/Plaud-AI
 
 environment:
   sdk: ^3.6.0
