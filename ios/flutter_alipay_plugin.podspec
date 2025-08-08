@@ -11,7 +11,7 @@ A new Flutter plugin project.
                        DESC
   s.homepage         = 'https://github.com/Plaud-AI/flutter_alipay_plugin'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'PlaudAI' => 'contact@plaud.ai' }
+  s.author           = { 'PlaudAI' => 'neo.wang@plaud.ai' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
