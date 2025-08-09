@@ -66,8 +66,8 @@ flutter:
       android:
         package: com.plaud.flutter_alipay_plugin
         pluginClass: FlutterAlipayPlugin
-      ios:
-        pluginClass: FlutterAlipayPlugin
+      # ios:
+      #   pluginClass: FlutterAlipayPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
