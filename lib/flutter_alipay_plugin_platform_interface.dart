@@ -49,13 +49,6 @@ abstract class FlutterAlipayPluginPlatform extends PlatformInterface {
     throw UnimplementedError('pay() has not been implemented.');
   }
 
-  /// Query Alipay payment result
-  Future<Map<String, dynamic>> queryOrder({
-    required String orderId,
-  }) {
-    throw UnimplementedError('queryOrder() has not been implemented.');
-  }
-
   /// Check if Alipay is installed
   Future<bool> isAlipayInstalled() {
     throw UnimplementedError('isAlipayInstalled() has not been implemented.');

@@ -69,14 +69,6 @@ void main() {
     expect(await flutterAlipayPlugin.pay(orderInfo: 'test_order'), {'success': true});
   });
 
-  test('queryOrder', () async {
-    FlutterAlipayPlugin flutterAlipayPlugin = FlutterAlipayPlugin();
-    MockFlutterAlipayPluginPlatform fakePlatform = MockFlutterAlipayPluginPlatform();
-    FlutterAlipayPluginPlatform.instance = fakePlatform;
-
-    expect(await flutterAlipayPlugin.queryOrder(orderId: 'test_order_id'), {'success': true});
-  });
-
   test('isAlipayInstalled', () async {
     FlutterAlipayPlugin flutterAlipayPlugin = FlutterAlipayPlugin();
     MockFlutterAlipayPluginPlatform fakePlatform = MockFlutterAlipayPluginPlatform();
@@ -84,6 +76,4 @@ void main() {
 
     expect(await flutterAlipayPlugin.isAlipayInstalled(), true);
   });
-  
-  
 }

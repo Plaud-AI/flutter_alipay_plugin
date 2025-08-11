@@ -47,16 +47,6 @@ class MethodChannelFlutterAlipayPlugin extends FlutterAlipayPluginPlatform {
   }
 
   @override
-  Future<Map<String, dynamic>> queryOrder({
-    required String orderId,
-  }) async {
-    final result = await methodChannel.invokeMethod<Map<dynamic, dynamic>>('queryOrder', {
-      'orderId': orderId,
-    });
-    return Map<String, dynamic>.from(result ?? {});
-  }
-
-  @override
   Future<bool> isAlipayInstalled() async {
     final result = await methodChannel.invokeMethod<bool>('isAlipayInstalled');
     return result ?? false;

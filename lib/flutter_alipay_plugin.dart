@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2025 PlaudAI. All rights reserved.
  * Author: Neo.Wang@plaud.ai
@@ -33,15 +32,6 @@ class FlutterAlipayPlugin {
     return FlutterAlipayPluginPlatform.instance.pay(
       orderInfo: orderInfo,
       isShowPayLoading: isShowPayLoading,
-    );
-  }
-
-  /// Query Alipay payment result
-  Future<Map<String, dynamic>> queryOrder({
-    required String orderId,
-  }) {
-    return FlutterAlipayPluginPlatform.instance.queryOrder(
-      orderId: orderId,
     );
   }
 
