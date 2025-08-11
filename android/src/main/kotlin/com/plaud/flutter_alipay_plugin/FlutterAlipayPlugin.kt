@@ -93,23 +93,6 @@ class FlutterAlipayPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
           }
         }
       }
-      "queryOrder" -> {
-        val orderId = call.argument<String>("orderId") ?: ""
-        if (orderId.isEmpty()) {
-          result.error("INVALID_ORDER_ID", "Order ID cannot be empty", null)
-          return
-        }
-        executor.execute {
-          activity?.runOnUiThread {
-            val response = mutableMapOf<String, Any>()
-            response["success"] = false
-            response["message"] = "Order query requires server-side implementation. Please implement order query on your server using Alipay's trade.query API."
-            response["orderId"] = orderId
-            response["status"] = "UNKNOWN"
-            result.success(response)
-          }
-        }
-      }
       "isAlipayInstalled" -> {
         val isInstalled = isAlipayAppInstalled()
         result.success(isInstalled)
