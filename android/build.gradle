@@ -56,7 +56,7 @@ android {
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.mockito:mockito-core:5.0.0")
         // Alipay SDK dependency
-        implementation("com.alipay.sdk:alipaysdk-android:+@aar1")
+        implementation("com.alipay.sdk:alipaysdk-android:+@aar")
     }
 
     testOptions {
