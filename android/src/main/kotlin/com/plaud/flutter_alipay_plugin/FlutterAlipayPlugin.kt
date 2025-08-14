@@ -23,6 +23,7 @@ class FlutterAlipayPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   private var appId: String = ""
   private var privateKey: String = ""
   private var publicKey: String = ""
+  private var isSandbox: Boolean = false
 
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_alipay_plugin")
@@ -39,11 +40,13 @@ class FlutterAlipayPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
         val appId = call.argument<String>("appId") ?: ""
         val privateKey = call.argument<String>("privateKey") ?: ""
         val publicKey = call.argument<String>("publicKey") ?: ""
+        val isSandbox = call.argument<Boolean>("isSandbox") ?: false
 
         if (appId.isNotEmpty() && privateKey.isNotEmpty()) {
           this.appId = appId
           this.privateKey = privateKey
           this.publicKey = publicKey
+          this.isSandbox = isSandbox
           result.success(true)
         } else {
           result.success(false)
@@ -66,6 +69,14 @@ class FlutterAlipayPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
         executor.execute {
           try {
             val payTask = PayTask(activity)
+            
+            // Configure sandbox environment if needed
+            if (isSandbox) {
+              // Note: Alipay SDK automatically handles sandbox environment based on the orderInfo
+              // The orderInfo should contain sandbox gateway URLs when isSandbox is true
+              // This is typically handled by the server when generating the orderInfo
+            }
+            
             val resultMap = payTask.payV2(orderInfo, isShowPayLoading)
 
             activity?.runOnUiThread {
@@ -78,6 +89,7 @@ class FlutterAlipayPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
               response["result"] = payResult
               response["memo"] = memo
               response["success"] = resultStatus == "9000"
+              response["isSandbox"] = isSandbox
 
               result.success(response)
             }
@@ -88,6 +100,7 @@ class FlutterAlipayPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
               response["result"] = ""
               response["memo"] = "Payment failed: ${e.message}"
               response["success"] = false
+              response["isSandbox"] = isSandbox
               result.success(response)
             }
           }

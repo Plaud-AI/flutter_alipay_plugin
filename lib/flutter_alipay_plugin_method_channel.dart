@@ -25,11 +25,13 @@ class MethodChannelFlutterAlipayPlugin extends FlutterAlipayPluginPlatform {
     required String appId,
     required String privateKey,
     String? publicKey,
+    bool isSandbox = false,
   }) async {
     final result = await methodChannel.invokeMethod<bool>('initAlipay', {
       'appId': appId,
       'privateKey': privateKey,
       'publicKey': publicKey,
+      'isSandbox': isSandbox,
     });
     return result ?? false;
   }

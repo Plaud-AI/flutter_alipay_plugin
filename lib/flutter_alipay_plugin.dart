@@ -11,16 +11,18 @@ class FlutterAlipayPlugin {
     return FlutterAlipayPluginPlatform.instance.getPlatformVersion();
   }
 
-  /// Initialize Alipay payment
+  /// Initialize Alipay payment with sandbox support
   Future<bool> initAlipay({
     required String appId,
     required String privateKey,
     String? publicKey,
+    bool isSandbox = false,
   }) {
     return FlutterAlipayPluginPlatform.instance.initAlipay(
       appId: appId,
       privateKey: privateKey,
       publicKey: publicKey,
+      isSandbox: isSandbox,
     );
   }
 

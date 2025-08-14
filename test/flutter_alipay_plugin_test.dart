@@ -21,17 +21,13 @@ class MockFlutterAlipayPluginPlatform
     required String appId,
     required String privateKey,
     String? publicKey,
+    bool isSandbox = false,
   }) => Future.value(true);
 
   @override
   Future<Map<String, dynamic>> pay({
     required String orderInfo,
     bool isShowPayLoading = true,
-  }) => Future.value({'success': true});
-
-  @override
-  Future<Map<String, dynamic>> queryOrder({
-    required String orderId,
   }) => Future.value({'success': true});
 
   @override
@@ -59,6 +55,18 @@ void main() {
     FlutterAlipayPluginPlatform.instance = fakePlatform;
 
     expect(await flutterAlipayPlugin.initAlipay(appId: 'test', privateKey: 'test'), true);
+  });
+
+  test('initAlipay with sandbox', () async {
+    FlutterAlipayPlugin flutterAlipayPlugin = FlutterAlipayPlugin();
+    MockFlutterAlipayPluginPlatform fakePlatform = MockFlutterAlipayPluginPlatform();
+    FlutterAlipayPluginPlatform.instance = fakePlatform;
+
+    expect(await flutterAlipayPlugin.initAlipay(
+      appId: 'test', 
+      privateKey: 'test',
+      isSandbox: true,
+    ), true);
   });
 
   test('pay', () async {
