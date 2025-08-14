@@ -16,11 +16,13 @@ class FlutterAlipayPlugin {
     required String appId,
     required String privateKey,
     String? publicKey,
+    bool? isSandbox,
   }) {
     return FlutterAlipayPluginPlatform.instance.initAlipay(
       appId: appId,
       privateKey: privateKey,
       publicKey: publicKey,
+      isSandbox: isSandbox,
     );
   }
 

@@ -37,6 +37,7 @@ abstract class FlutterAlipayPluginPlatform extends PlatformInterface {
     required String appId,
     required String privateKey,
     String? publicKey,
+    bool? isSandbox,
   }) {
     throw UnimplementedError('initAlipay() has not been implemented.');
   }
