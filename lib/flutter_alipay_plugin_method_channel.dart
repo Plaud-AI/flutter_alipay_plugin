@@ -16,21 +16,18 @@ class MethodChannelFlutterAlipayPlugin extends FlutterAlipayPluginPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version =
+        await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
 
   @override
   Future<bool> initAlipay({
     required String appId,
-    required String privateKey,
-    String? publicKey,
     bool? isSandbox,
   }) async {
     final result = await methodChannel.invokeMethod<bool>('initAlipay', {
       'appId': appId,
-      'privateKey': privateKey,
-      'publicKey': publicKey,
       'isSandbox': isSandbox,
     });
     return result ?? false;
@@ -41,7 +38,8 @@ class MethodChannelFlutterAlipayPlugin extends FlutterAlipayPluginPlatform {
     required String orderInfo,
     bool isShowPayLoading = true,
   }) async {
-    final result = await methodChannel.invokeMethod<Map<dynamic, dynamic>>('pay', {
+    final result =
+        await methodChannel.invokeMethod<Map<dynamic, dynamic>>('pay', {
       'orderInfo': orderInfo,
       'isShowPayLoading': isShowPayLoading,
     });

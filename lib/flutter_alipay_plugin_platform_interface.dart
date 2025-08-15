@@ -13,7 +13,8 @@ abstract class FlutterAlipayPluginPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static FlutterAlipayPluginPlatform _instance = MethodChannelFlutterAlipayPlugin();
+  static FlutterAlipayPluginPlatform _instance =
+      MethodChannelFlutterAlipayPlugin();
 
   /// The default instance of [FlutterAlipayPluginPlatform] to use.
   ///
@@ -35,8 +36,6 @@ abstract class FlutterAlipayPluginPlatform extends PlatformInterface {
   /// Initialize Alipay payment
   Future<bool> initAlipay({
     required String appId,
-    required String privateKey,
-    String? publicKey,
     bool? isSandbox,
   }) {
     throw UnimplementedError('initAlipay() has not been implemented.');

@@ -20,8 +20,6 @@ class FlutterAlipayPlugin {
   }) {
     return FlutterAlipayPluginPlatform.instance.initAlipay(
       appId: appId,
-      privateKey: privateKey,
-      publicKey: publicKey,
       isSandbox: isSandbox,
     );
   }

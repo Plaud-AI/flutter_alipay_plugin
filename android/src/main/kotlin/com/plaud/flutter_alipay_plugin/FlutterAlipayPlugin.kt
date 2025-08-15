@@ -26,8 +26,6 @@ class FlutterAlipayPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private val executor = Executors.newSingleThreadExecutor()
 
     private var appId: String = ""
-    private var privateKey: String = ""
-    private var publicKey: String = ""
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_alipay_plugin")
@@ -44,11 +42,6 @@ class FlutterAlipayPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             "initAlipay" -> {
                 val isSandbox = call.argument<Boolean>("isSandbox") ?: false
                 val appId = call.argument<String>("appId") ?: ""
-//                val privateKey = call.argument<String>("privateKey") ?: ""
-//                val publicKey = call.argument<String>("publicKey") ?: ""
-
-//                Log.i("alipay", "pay local appId=$appId")
-//                Log.i("alipay", "pay local isSandbox=$isSandbox")
 
                 if (isSandbox) {
                     EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX)
@@ -93,9 +86,6 @@ class FlutterAlipayPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                         val payTask = PayTask(activity)
                         val resultMap = payTask.payV2(orderInfo, isShowPayLoading)
 
-//                        Log.i("alipay", "pay local orderInfo=$orderInfo")
-//                        Log.i("alipay", "pay local resultMap=$resultMap")
-
                         activity?.runOnUiThread {
                             val response = mutableMapOf<String, Any>()
                             val resultStatus = resultMap["resultStatus"] as? String ?: ""
@@ -111,7 +101,6 @@ class FlutterAlipayPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                         }
                     } catch (e: Exception) {
                         e.printStackTrace()
-//                        Log.i("alipay", "pay local Exception=${e.message}")
                         activity?.runOnUiThread {
                             val response = mutableMapOf<String, Any>()
                             response["resultStatus"] = "4000"
@@ -119,14 +108,12 @@ class FlutterAlipayPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                             response["memo"] = "custom Payment failed: ${e.message}"
                             response["success"] = false
                             result.success(response)
-//
                         }
                     }
                 }
             }
 
             "isAlipayInstalled" -> {
-//                val isInstalled = isAlipayAppInstalled()
                 result.success(true)
             }
 
@@ -134,15 +121,15 @@ class FlutterAlipayPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         }
     }
 
-    private fun isAlipayAppInstalled(): Boolean {
-        return try {
-            val packageManager = context.packageManager
-            packageManager.getPackageInfo("com.eg.android.AlipayGphone", PackageManager.GET_ACTIVITIES)
-            true
-        } catch (e: Exception) {
-            false
-        }
-    }
+    // private fun isAlipayAppInstalled(): Boolean {
+    //     return try {
+    //         val packageManager = context.packageManager
+    //         packageManager.getPackageInfo("com.eg.android.AlipayGphone", PackageManager.GET_ACTIVITIES)
+    //         true
+    //     } catch (e: Exception) {
+    //         false
+    //     }
+    // }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         channel.setMethodCallHandler(null)
